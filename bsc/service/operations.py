@@ -11,7 +11,7 @@ def convert_gwei_to_BNB(value) -> decimal.Decimal:
     return int(value) / 10 ** 18
 
 
-def is_hex(value) -> decimal.Decimal:
+def is_hex(value):
     """
     Evaluate if hexadecimal according to jsonrpc defined response
         0x[values]
@@ -19,6 +19,19 @@ def is_hex(value) -> decimal.Decimal:
     :return: True
     """
     return re.fullmatch(r"0x[0-9A-Fa-f]+", value or "") is not None
+
+
+def in_gwei(value) -> decimal.Decimal:
+    """
+    format to gwei, source value can be decimal or hexadecimal
+    :param value: 0x430e23400
+    :return: 0.000000018
+    """
+    if is_hex(value):
+        converted_value = int(value, 16)
+        return decimal.Decimal(converted_value)
+    else:
+        return decimal.Decimal(value)
 
 
 def in_BNB(value) -> decimal.Decimal:

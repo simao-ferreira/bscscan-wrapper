@@ -1,18 +1,15 @@
 import requests
 
-from bsc.modules.url_helper import UrlBuilder
 
+class Client:
 
-class Client(UrlBuilder):
-
-    def __init__(self, api_key):
-        UrlBuilder.__init__(self, api_key)
+    def __init__(self):
         self.http = requests.session()
 
-    def connect(self):
+    def connect(self, url):
         try:
-            print(self.url)
-            request = self.http.get(self.url)
+            print(url)
+            request = self.http.get(url)
         except requests.exceptions.ConnectionError:
             raise Exception
 
