@@ -1,3 +1,5 @@
+import abc
+
 from bsc.module.client import Client
 from bsc.module.model.url_builder import UrlBuilder
 
@@ -8,5 +10,6 @@ class Module(Client):
         Client.__init__(self)
         self.url_builder = UrlBuilder()
 
+    @abc.abstractmethod
     def set_module_parameters(self):
         pass
