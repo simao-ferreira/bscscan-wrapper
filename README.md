@@ -29,5 +29,14 @@ pip install -r requirements.txt
 
 ### How to use
 
+```
+# Activate environment
+source venv/bin/activate
+
+# Run
+pyhton main.py
+```
+
 ## Acknowledgements
+
 * https://github.com/corpetty/py-etherscan-api
