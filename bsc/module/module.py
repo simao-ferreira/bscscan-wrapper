@@ -1,6 +1,6 @@
 import abc
 
-from bsc.module.client import Client
+from bsc.client.client import Client
 from bsc.module.model.url_builder import UrlBuilder
 
 

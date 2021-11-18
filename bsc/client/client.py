@@ -1,5 +1,7 @@
 import requests
 
+from bsc.client.exception import NotOkResponseException, ConnectionFailureException
+
 
 class Client:
 
@@ -11,7 +13,8 @@ class Client:
             print(url)
             request = self.http.get(url)
         except requests.exceptions.ConnectionError:
-            raise Exception
+            raise ConnectionFailureException()
+            # //TODO: Test
 
         if request.status_code == 200:
             response = request.json()
@@ -21,6 +24,7 @@ class Client:
             if response.get('jsonrpc') is not None:
                 return response
             else:
-                raise Exception(response.get('message', 'No message was found!'))
+                raise NotOkResponseException(response.get('result'))
         else:
+            # BadRequestException(request.status_code) //TODO: Test
             print("Response status: %s" % request.status_code)
